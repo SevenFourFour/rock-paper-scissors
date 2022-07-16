@@ -22,50 +22,82 @@ function playerPlay(){
 // PS: Make playerSelection parameter case-insensitive
 
 function playRound(playerSelection, computerSelection){
-    console.log(playerSelection)
-    console.log(computerSelection)
+    console.log(choices[playerSelection])
+    console.log(choices[computerSelection])
     switch(playerSelection){
         case 0:
             switch(computerSelection){
                 case 0:
-                    return 'Tie'
+                    return 'You tied this round!'
                     break;
                 case 1:
-                    return 'Lose'
+                    return choices[playerSelection] + ' loses to ' + choices[computerSelection] + '. You lose this round.'
                     break;
                 default:
-                    return 'Win'
+                    return choices[playerSelection] + ' wins to ' + choices[computerSelection] + '. You win this round.'
             }
             break;
         case 1:
             switch(computerSelection){
                 case 0:
-                    return 'Win'
+                    return choices[playerSelection] + ' wins to ' + choices[computerSelection] + '. You win this round.'
                     break;
                 case 1:
-                    return 'Tie'
+                    return 'You tied this round!'
                     break;
                 default:
-                    return 'Lose'
+                    return choices[playerSelection] + ' loses to ' + choices[computerSelection] + '. You lose this round.'
             }
             break;
         default:
             case 0:
                 switch(computerSelection){
                     case 0:
-                        return 'Lose'
+                        return choices[playerSelection] + ' loses to ' + choices[computerSelection] + '. You lose this round.'
                         break;
                     case 1:
-                        return 'Win'
+                        return choices[playerSelection] + ' wins to ' + choices[computerSelection] + '. You win this round.'
                         break;
                     default:
-                        return 'Tie'
+                        return 'You tied this round!'
                 }
                 break;
     }
 }
 
-console.log(playRound(playerPlay(), computerPlay()))
 
 // Write a function called game() that calls playRound to
 // to play a 5 round game and reports a winner at the end
+
+function game(){
+    var playerScore = 0
+    var computerScore = 0
+    
+    for(let i = 0; i < 5; i++){
+        var playerChoice = playerPlay()
+        var computerChoice = computerPlay()
+        var result = playRound(playerChoice, computerChoice)
+        console.log(result)
+
+        if(result.includes('win')){
+            playerScore += 1
+        }
+        else if(result.includes('lose')){
+            computerScore += 1
+        }
+    }
+
+    if(playerScore > computerScore){
+        return "You won the game!\nPlayer Score: " + String(playerScore) + "\nComputer Score: " + String(computerScore)
+    } 
+    else if(playerScore < computerScore){
+        return "You lost the game!\nPlayer Score: " + String(playerScore) + "\nComputer Score: " + String(computerScore)
+    }
+    else{
+        return "Tie game!\nPlayer Score: " + String(playerScore) + "\nComputer Score: " + String(computerScore)
+    }
+
+}
+
+
+console.log(game())
