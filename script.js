@@ -14,6 +14,22 @@ function playerPlay() {
 }
 
 
+const buttonRock = document.querySelector('#rock');
+const buttonPaper = document.querySelector('#paper');
+const buttonScissors = document.querySelector('#scissors');
+
+buttonRock.addEventListener('click', function (e) {
+    console.log(playRound(e.target.textContent, computerPlay()))
+})
+
+buttonPaper.addEventListener('click', function (e) {
+    console.log(playRound(e.target.textContent, computerPlay()))
+})
+
+buttonScissors.addEventListener('click', function (e) {
+    console.log(playRound(e.target.textContent, computerPlay()))
+})
+
 // Create a function that plays a single round of rock,
 // paper, scissors. 
 // Two parameters: playerSelection and computerSelection
@@ -22,41 +38,41 @@ function playerPlay() {
 // PS: Make playerSelection parameter case-insensitive
 
 function playRound(playerSelection, computerSelection) {
-    console.log(choices[playerSelection])
+    console.log(playerSelection)
     console.log(choices[computerSelection])
     switch (playerSelection) {
-        case 0:
+        case 'Rock':
             switch (computerSelection) {
                 case 0:
                     return 'You tied this round!'
                     break;
                 case 1:
-                    return choices[playerSelection] + ' loses to ' + choices[computerSelection] + '. You lose this round.'
+                    return [playerSelection] + ' loses to ' + choices[computerSelection] + '. You lose this round.'
                     break;
                 default:
-                    return choices[playerSelection] + ' wins to ' + choices[computerSelection] + '. You win this round.'
+                    return [playerSelection] + ' wins to ' + choices[computerSelection] + '. You win this round.'
             }
             break;
-        case 1:
+        case 'Paper':
             switch (computerSelection) {
                 case 0:
-                    return choices[playerSelection] + ' wins to ' + choices[computerSelection] + '. You win this round.'
+                    return [playerSelection] + ' wins to ' + choices[computerSelection] + '. You win this round.'
                     break;
                 case 1:
                     return 'You tied this round!'
                     break;
                 default:
-                    return choices[playerSelection] + ' loses to ' + choices[computerSelection] + '. You lose this round.'
+                    return [playerSelection] + ' loses to ' + choices[computerSelection] + '. You lose this round.'
             }
             break;
         default:
-        case 0:
+        case 'Scissors':
             switch (computerSelection) {
                 case 0:
-                    return choices[playerSelection] + ' loses to ' + choices[computerSelection] + '. You lose this round.'
+                    return [playerSelection] + ' loses to ' + choices[computerSelection] + '. You lose this round.'
                     break;
                 case 1:
-                    return choices[playerSelection] + ' wins to ' + choices[computerSelection] + '. You win this round.'
+                    return [playerSelection] + ' wins to ' + choices[computerSelection] + '. You win this round.'
                     break;
                 default:
                     return 'You tied this round!'
@@ -72,7 +88,7 @@ function playRound(playerSelection, computerSelection) {
 function game(){
     var playerScore = 0
     var computerScore = 0
-    
+
     for(let i = 0; i < 5; i++){
         var playerChoice = playerPlay()
         var computerChoice = computerPlay()
@@ -89,7 +105,7 @@ function game(){
 
     if(playerScore > computerScore){
         return "You won the game!\nPlayer Score: " + String(playerScore) + "\nComputer Score: " + String(computerScore)
-    } 
+    }
     else if(playerScore < computerScore){
         return "You lost the game!\nPlayer Score: " + String(playerScore) + "\nComputer Score: " + String(computerScore)
     }
@@ -104,4 +120,4 @@ function game(){
 
 
 
-console.log(game())
+// console.log(game())
