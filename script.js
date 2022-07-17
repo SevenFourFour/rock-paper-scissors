@@ -14,21 +14,29 @@ function playerPlay() {
 }
 
 
+
+// Creates buttons that start round when pressed
 const buttonRock = document.querySelector('#rock');
 const buttonPaper = document.querySelector('#paper');
 const buttonScissors = document.querySelector('#scissors');
 
+// Results screen
+const resultsScreen = document.querySelector('#results-screen')
+
 buttonRock.addEventListener('click', function (e) {
-    console.log(playRound(e.target.textContent, computerPlay()))
+    resultsScreen.textContent = playRound(e.target.textContent, computerPlay())
 })
 
 buttonPaper.addEventListener('click', function (e) {
-    console.log(playRound(e.target.textContent, computerPlay()))
+    resultsScreen.textContent = playRound(e.target.textContent, computerPlay())
 })
 
 buttonScissors.addEventListener('click', function (e) {
-    console.log(playRound(e.target.textContent, computerPlay()))
+    resultsScreen.textContent = playRound(e.target.textContent, computerPlay())
 })
+
+
+
 
 // Create a function that plays a single round of rock,
 // paper, scissors. 
@@ -38,8 +46,7 @@ buttonScissors.addEventListener('click', function (e) {
 // PS: Make playerSelection parameter case-insensitive
 
 function playRound(playerSelection, computerSelection) {
-    console.log(playerSelection)
-    console.log(choices[computerSelection])
+
     switch (playerSelection) {
         case 'Rock':
             switch (computerSelection) {
