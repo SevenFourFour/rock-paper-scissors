@@ -2,6 +2,8 @@
 // either rock, paper, or scissors. 
 
 var choices = ['Rock', 'Paper', 'Scissors']
+var playerScore = 0;
+var computerScore = 0;
 
 function computerPlay() {
     var index = Math.floor(Math.random() * 3)
@@ -14,25 +16,65 @@ function playerPlay() {
 }
 
 
+function checkScore() {
+    if (playerScore >= 5) {
+        resultsScreen.textContent = 'You won the game!'
+    }
+    else if (computerScore >= 5) {
+        resultsScreen.textContent = 'You lost the game!'
+    }
+}
+
+function updateScore() {
+
+}
 
 // Creates buttons that start round when pressed
 const buttonRock = document.querySelector('#rock');
 const buttonPaper = document.querySelector('#paper');
 const buttonScissors = document.querySelector('#scissors');
 
+// Create scorecards
+const playerScoreCard = document.getElementById('playerScore')
+const computerScoreCard = document.getElementById('computerScore')
+const playerScoreVal = document.createElement('span')
+const computerScoreVal = document.createElement('span')
+
+playerScoreVal.textContent = playerScore
+computerScoreVal.textContent = computerScore
+
+playerScoreCard.appendChild(playerScoreVal)
+computerScoreCard.appendChild(computerScoreVal)
+
+// Updates the score
+function updateScore() {
+    playerScoreVal.textContent = playerScore
+    computerScoreVal.textContent = computerScore
+
+    playerScoreCard.removeChild(playerScoreVal)
+    computerScoreCard.removeChild(computerScoreVal)
+
+    playerScoreCard.appendChild(playerScoreVal)
+    computerScoreCard.appendChild(computerScoreVal)
+}
+
+
 // Results screen
 const resultsScreen = document.querySelector('#results-screen')
 
 buttonRock.addEventListener('click', function (e) {
     resultsScreen.textContent = playRound(e.target.textContent, computerPlay())
+    checkScore()
 })
 
 buttonPaper.addEventListener('click', function (e) {
     resultsScreen.textContent = playRound(e.target.textContent, computerPlay())
+    checkScore()
 })
 
 buttonScissors.addEventListener('click', function (e) {
     resultsScreen.textContent = playRound(e.target.textContent, computerPlay())
+    checkScore()
 })
 
 
@@ -54,21 +96,29 @@ function playRound(playerSelection, computerSelection) {
                     return 'You tied this round!'
                     break;
                 case 1:
+                    computerScore += 1
+                    updateScore()
                     return [playerSelection] + ' loses to ' + choices[computerSelection] + '. You lose this round.'
                     break;
                 default:
+                    playerScore += 1
+                    updateScore()
                     return [playerSelection] + ' wins to ' + choices[computerSelection] + '. You win this round.'
             }
             break;
         case 'Paper':
             switch (computerSelection) {
                 case 0:
+                    playerScore += 1
+                    updateScore()
                     return [playerSelection] + ' wins to ' + choices[computerSelection] + '. You win this round.'
                     break;
                 case 1:
                     return 'You tied this round!'
                     break;
                 default:
+                    computerScore += 1
+                    updateScore()
                     return [playerSelection] + ' loses to ' + choices[computerSelection] + '. You lose this round.'
             }
             break;
@@ -76,9 +126,13 @@ function playRound(playerSelection, computerSelection) {
         case 'Scissors':
             switch (computerSelection) {
                 case 0:
+                    computerScore += 1
+                    updateScore()
                     return [playerSelection] + ' loses to ' + choices[computerSelection] + '. You lose this round.'
                     break;
                 case 1:
+                    playerScore += 1
+                    updateScore()
                     return [playerSelection] + ' wins to ' + choices[computerSelection] + '. You win this round.'
                     break;
                 default:
