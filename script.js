@@ -19,10 +19,18 @@ function playerPlay() {
 function checkScore() {
     if (playerScore >= 5) {
         resultsScreen.textContent = 'You won the game!'
+        setTimeout(startOver, 3000)
     }
     else if (computerScore >= 5) {
         resultsScreen.textContent = 'You lost the game!'
+        setTimeout(startOver, 3000)
     }
+}
+
+function startOver() {
+    playerScore = 0
+    computerScore = 0
+    resultsScreen.textContent = 'Press any button to start over.'
 }
 
 function updateScore() {
