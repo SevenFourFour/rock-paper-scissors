@@ -8,6 +8,8 @@ This version of the project will focus on recreating the game solely through the
 
 ## Version 2 
 
+[A working demo of the app can be found here](https://sevenfourfour.github.io/rock-paper-scissors/)
+
 ![The beginning of the game](/img/begin.png)
 
 This version of the project allows the user to play the game with a barebones GUI 
