@@ -8,5 +8,9 @@ This version of the project will focus on recreating the game solely through the
 
 ## Version 2 
 
+![The beginning of the game](/img/begin.png)
+
 This version of the project allows the user to play the game with a barebones GUI 
 created from buttons, event listeners, and dynamically created text content containers. Functionality has been implemented for the user to replay the game upon finishing.
+
+![Replay function](/img/end.png)
